@@ -36,14 +36,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //dateImageViewAppend() //create ImageArray
         datePicker.locale = Locale(identifier: "zh_TW")
         dateFormatter.dateFormat = "yyyy/MM/dd"
         pictureView.image = UIImage(named: dateImageView[dateImageViewNum])
-        //songNameTextView.text = songAry[songNum]
         autoPlaySwitch.isOn = false
         initPlaySong()
-        //updatesongPlayer()
         
         // Do any additional setup after loading the view.
     }
@@ -54,15 +51,7 @@ class ViewController: UIViewController {
         playerItem = AVPlayerItem(url: URL(fileURLWithPath: sound!))
         songPlayer = AVPlayer(playerItem: playerItem!)
         }
-    func updatesongPlayer(){
-        songPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1,timescale: 1), queue: DispatchQueue.main) { (CMTime) in
-            let currentTime = CMTimeGetSeconds(self.songPlayer.currentTime())
-            
-        }
-        let duration = playerItem!.asset.duration
-        let seconds = CMTimeGetSeconds(duration)
-        
-    }
+    
     func autoPlayImage(){
         if dateImageViewNum >= dateImageView.count{
             dateImageViewNum = 0
@@ -118,7 +107,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func datePickerChange(_ sender: UIDatePicker) {
-        
     }
 
     @IBAction func dateSwitchChange(_ sender: UISwitch) {
